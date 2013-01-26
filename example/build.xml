@@ -1,0 +1,14 @@
+<target name="Example">
+	<haxelib name="msignal" />
+	<haxelib name="mpartial" />
+	<haxelib name="mmvc" />
+	<source path="/Users/acs/Documents/workspaces4.5.1/harry/BasisAndroid/example/src/" />
+	<builddir path="/Users/acs/Documents/workspaces4.5.1/harry/BasisAndroid/example/build/" />
+	<target type="android">
+		<emulator use="true" />
+		<appBuildNumber value="1" />
+		<appVersion value="1.0" />
+		<appPackage value="basis.example" />
+		<main classpath="example.ApplicationMain" />
+	</target>
+</target>

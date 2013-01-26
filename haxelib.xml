@@ -1,0 +1,8 @@
+<project name="BasisAndroid" url="https://github.com/Randonee/BasisAndroid" license="MIT">
+    <user name="randonee"/>
+    <tag v="android"/>
+    <tag v="cross"/>
+    <!--  <depends name="Basis"/>-->
+    <description>BasisAndroid</description>
+    <version name="0.0.1">alpha</version>
+</project>

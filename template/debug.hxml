@@ -1,0 +1,6 @@
+-main ::main::
+-cp haxe/src
+-java haxe/java
+-D android
+-D no-compilation
+-debug

@@ -1,0 +1,38 @@
+<project basedir=".">
+	<target name="buildHaxelib">
+		<delete dir="build"/>
+		
+		<mkdir dir="build/"/>
+		<mkdir dir="build/BasisAndroid"/>
+		<mkdir dir="build/BasisAndroid/0,0,1"/>
+		<mkdir dir="build/BasisAndroid/0,0,1/bin"/>
+		<mkdir dir="build/BasisAndroid/0,0,1/template"/>
+		
+		<exec dir="." failonerror="true" executable="haxe">
+			<arg line="build.hxml" />
+		</exec>
+		
+		<copy todir="build/BasisAndroid/0,0,1">
+			<fileset dir="src"/>
+		</copy>
+	
+		<copy todir="build/BasisAndroid/0,0,1/template">
+			<fileset dir="template"/>
+		</copy>
+	
+		<copy file="haxelib.xml" tofile="build/BasisAndroid/0,0,1/haxelib.xml"/>
+		<copy file="build/run.n" tofile="build/BasisAndroid/0,0,1/run.n"/>
+		
+		<echo file="build/BasisAndroid/.current" >0.0.1</echo>
+		
+		<zip destfile="build/BasisAndroid.zip" basedir="build/BasisAndroid" />
+	</target>
+
+	<target name="testlib">
+		<antcall target="buildHaxelib" />
+		<exec dir="." failonerror="true" executable="haxelib">
+			<arg line="test build/BasisAndroid.zip" />
+		</exec>
+	</target>
+	
+</project>
