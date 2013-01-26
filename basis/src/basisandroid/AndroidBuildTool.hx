@@ -25,6 +25,7 @@ class AndroidBuildTool extends basis.BuildTool
 		var androidTarget:AndroidTarget = cast(target, AndroidTarget).getAndroidTarget();
 		
 		var args:Array<String> = androidTarget.getCollection(Target.COMMAND_LINE_ARGUMENTS, true);
+		var resourceDirectoies:Array<String> = androidTarget.getCollection(AndroidTarget.RESOURCE_DIRECTORIES, true);
 		var sourcePaths:Array<String> = androidTarget.getCollection(Target.SOURCE_PATHS, true);
 		var assetPaths:Array<String> = androidTarget.getCollection(Target.ASSET_PATHS, true);
 		var haxeLibs:Array<String> = androidTarget.getCollection(Target.HAXE_LIBS, true);
@@ -100,10 +101,16 @@ class AndroidBuildTool extends basis.BuildTool
 			}
 		}
 		
+		var fout:FileOutput = File.write(targetPath + "/haxe/package.txt");
+		fout.writeString(androidTarget.getSetting(AndroidTarget.APP_PACKAGE));
+		
+		
+		FileUtil.createDirectory(targetPath + "/res/");
+		for(dir in resourceDirectoies)
+			FileUtil.copyInto(dir, targetPath + "/res/");
+		
 		ProcessUtil.runCommand(targetPath, "haxe", ["debug.hxml"]);
-		
 		FileUtil.copyInto(haxePath + "/java/src/", targetPath + "/src/");
-		
 		ProcessUtil.runCommand(targetPath, "ant", ["debug"]);
 		
 	}

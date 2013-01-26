@@ -1,54 +1,42 @@
 package example;
 
+import android.app.MainActivity;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Button;
+import android.view.View;
+import android.view.KeyEvent;
+import r.Id;
+import r.Layout;
 
-class MainView extends UIView
+class MainView implements OnKeyListener, implements OnClickListener
 {
-	private var _inputLabel:UILabel;
-	private var _inputField:UITextField;
-	private var _outputField:UITextField;
-	private var _outputLabel:UILabel;
-	private var _sampleButton:UIButton;
+	private var _inputLabel:TextView;
+	private var _inputField:EditText;
+	private var _outputField:EditText;
+	private var _outputLabel:TextView;
+	private var _sampleButton:Button;
 	
 	public function new()
 	{
-		super();
-		this.frame = [0.0 ,0,400,400];
+		MainActivity.getInstance().setContentView(Layout.main);
+		_inputField = cast(MainActivity.getInstance().findViewById(Id.inputField), EditText);
+		_outputField = cast(MainActivity.getInstance().findViewById(Id.outputField), EditText);
+		_sampleButton = cast(MainActivity.getInstance().findViewById(Id.sampleButton), Button);
 		
-		_inputLabel = new UILabel();
-		addSubview(_inputLabel);
-		_inputLabel.text  = "Input";
-		
-		_inputLabel.frame = [5.0,0,200,30];
-		
-		_inputField= new UITextField();
-		addSubview(_inputField);
-		_inputField.frame = [5.0,30,200,30];
-		_inputField.addEventListener(EventTypes.TEXTFIELD_TEXT_DID_CHANGE, onInputChanged);
-		
-		_outputLabel = new UILabel();
-		addSubview(_outputLabel);
-		_outputLabel.text  = "Output";
-		_outputLabel.frame = [5.0,80,200,30];
-		
-		_outputField= new UITextField();
-		addSubview(_outputField);
-		_outputField.frame = [5.0,110,200,30];
-		
-		_sampleButton = new UIButton();
-		_sampleButton.frame = [50.0,160,100,30];
-		_sampleButton.setTitle("Button", 0);
-		_sampleButton.addEventListener(EventTypes.CONTROL_TOUCH_UP_INSIDE, onButtonClick);
-		addSubview(_sampleButton);
-		
+		_inputField.setOnKeyListener(this);
+		_sampleButton.setOnClickListener(this);
 	}
 	
-	private function onButtonClick(view:ViewBase, type):Void
+	public function onClick(v:View):Void
 	{
-		_inputField.text = "Button Clicked";
+		_inputField.setText("Button Clicked");
 	}
 	
-	private function onInputChanged(view:ViewBase, type):Void
+	public function onKey(v:View, actionId:Int, event:KeyEvent):Bool
 	{
-		_outputField.text = _inputField.text;
+		_outputField.setText("oo");
+		return true;
 	}
+	
 }

@@ -1,5 +1,6 @@
 -main ::main::
 -cp haxe/src
+-lib BasisAndroid
 -java haxe/java
 -D android
 -D no-compilation

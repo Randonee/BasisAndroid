@@ -10,5 +10,6 @@
 		<appVersion value="1.0" />
 		<appPackage value="basis.example" />
 		<main classpath="example.ApplicationMain" />
+		<resourceDir path="/Users/acs/Documents/workspaces4.5.1/harry/BasisAndroid/example/res/" />
 	</target>
 </target>

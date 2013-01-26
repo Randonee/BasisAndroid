@@ -9,6 +9,9 @@ class AndroidTarget extends Target
 	static inline public var APP_BUILD_NUMBER:String = "appBuildNumber";
 	static inline public var APP_VERSION:String = "appVersion";
 	static inline public var APP_PACKAGE:String = "appPackage";
+	static inline public var RESOURCE_DIRECTORIES:String = "resourceDirectories";
+	
+	
 	
 	//Collections
 	static inline public var FRAMEWORKS:String = "frameworks";

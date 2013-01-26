@@ -22,7 +22,10 @@ class XmlAndroidSettings extends XmlSettings
 			parseAppPackage(targetXML.node.appPackage, currentTarget);
 		if(targetXML.hasNode.emulator)
 			parseEmulator(targetXML.node.emulator, currentTarget);
-		
+			
+		for( dir in targetXML.nodes.resourceDir )
+			parseResourceDirectories(dir, currentTarget);
+			
 		super.parseTarget(targetXML, currentTarget);
 	}
 	
@@ -44,6 +47,11 @@ class XmlAndroidSettings extends XmlSettings
 	private function parseEmulator(xml:Fast, currentTarget:Target):Void
 	{
 		currentTarget.setSetting(AndroidTarget.EMULATOR, xml.att.use.toLowerCase());
+	}
+	
+	private function parseResourceDirectories(dir:Fast, currentTarget):Void
+	{
+		currentTarget.addToCollection(AndroidTarget.RESOURCE_DIRECTORIES, dir.att.path);
 	}
 	
 }
