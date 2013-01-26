@@ -3,6 +3,9 @@ BasisAndroid
 
 Haxe Native Android Development
 
+This haxelib is used by the Basis haxelib
+https://github.com/Randonee/Basis
+
 This project uses the java target to create and compile android projects.
 
 You can use layout xml the same way you can in an actual android project by saving them in project_dir/res/layout. You can then access them in haxe like this:
