@@ -1,11 +1,13 @@
-BasisApple
+BasisAndroid
 =====
 
-Haxe Native Apple Development
+Haxe Native Android Development
 
-This project uses hxcpp and CFFI to allow the use of native Apple UI components.
+This project uses the java target to create and compile android projects.
 
-This haxelib is used by the Basis haxelib
+You can use layout xml the same way you can in an actual android project by saving them in project_dir/res/layout. You can then access them in haxe like this:
+
+r.Layout.layout_name
 
 
 **License:**
