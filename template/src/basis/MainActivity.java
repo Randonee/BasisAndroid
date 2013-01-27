@@ -2,17 +2,10 @@ package basis;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 
 public class MainActivity extends Activity
 {
 	static MainActivity activity;
-	static Context context;
-	
-	public static Context getContext()
-	{
-		return context;
-	}
 	
 	public static MainActivity getInstance()
 	{
@@ -23,6 +16,6 @@ public class MainActivity extends Activity
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-		::main::.main();
+        activity = this;
 	}
 }

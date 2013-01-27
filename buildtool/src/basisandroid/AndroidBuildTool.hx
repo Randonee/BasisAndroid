@@ -30,6 +30,8 @@ class AndroidBuildTool extends basis.BuildTool
 		var assetPaths:Array<String> = androidTarget.getCollection(Target.ASSET_PATHS, true);
 		var haxeLibs:Array<String> = androidTarget.getCollection(Target.HAXE_LIBS, true);
 		
+		var appPackage:String = androidTarget.getSetting(AndroidTarget.APP_PACKAGE);
+		
 		var mainClass:String = androidTarget.getSetting(Target.MAIN);
 		if(mainClass == "" || mainClass == null)
 			throw("No main class found. Add <main classpath=\"com.example.Main\"/> to target");
@@ -49,6 +51,11 @@ class AndroidBuildTool extends basis.BuildTool
 		var settingsContenxt:Dynamic = androidTarget.getSettingsContext();
 		
 		FileUtil.copyInto(libPath + "/template" , targetPath, settingsContenxt);
+		var mainPackageDir:String = targetPath + "/src/" + StringTools.replace(appPackage, ".", "/");
+		FileUtil.createDirectory(mainPackageDir);
+		File.copy(targetPath + "/BasisActivity.java", mainPackageDir + "/BasisActivity.java");
+		FileSystem.deleteFile(targetPath + "/BasisActivity.java");
+		
 		
 		var mainFound:Bool = false;
 		for(a in 0...sourcePaths.length)
@@ -102,7 +109,7 @@ class AndroidBuildTool extends basis.BuildTool
 		}
 		
 		var fout:FileOutput = File.write(targetPath + "/haxe/package.txt");
-		fout.writeString(androidTarget.getSetting(AndroidTarget.APP_PACKAGE));
+		fout.writeString(appPackage);
 		
 		
 		FileUtil.createDirectory(targetPath + "/res/");

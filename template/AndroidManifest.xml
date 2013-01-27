@@ -3,7 +3,7 @@
 
 	<application android:label="::name::" android:debuggable="true"::if (HAS_ICON):: android:icon="@drawable/icon"::end::>
 		
-		<activity android:name="MainActivity" android:label="::name::">
+		<activity android:name="BasisActivity" android:label="::name::">
 			
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
