@@ -17,7 +17,7 @@ run command :
 
 **Running the Example**
 
-* Download the example in the example directory. https://github.com/Randonee/BasisApple/tree/master/example
+* Download the example in the example directory. https://github.com/Randonee/BasisAndroid/tree/master/example
 * From the example directory run the command: haxelib run Basis build.xml
 
 
