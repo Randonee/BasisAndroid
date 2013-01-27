@@ -5,11 +5,13 @@
 	<source path="src" />
 	<builddir path="build" />
 	<target type="android">
-		<emulator use="true" />
 		<appBuildNumber value="1" />
 		<appVersion value="1.0" />
 		<appPackage value="basis.example" />
 		<main classpath="example.ApplicationMain" />
 		<resourceDir path="res" />
+		<emulator use="true" />
+		<debug value="true" />
+		<runWhenFinished value="true" />
 	</target>
 </target>
