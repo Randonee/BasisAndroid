@@ -10,7 +10,7 @@ This project uses the java target to create and compile android projects.
 
 **Installation**
 
-run command run command (make sure Bases has a capital "B")::
+run command run command (make sure Basis has a capital "B")::
 
 	haxelib install Basis
 	
