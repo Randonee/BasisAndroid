@@ -8,9 +8,20 @@ https://github.com/Randonee/Basis
 
 This project uses the java target to create and compile android projects.
 
-You can use layout xml the same way you can in an actual android project by saving them in project_dir/res/layout. You can then access them in haxe like this:
+**Installation**
 
-r.Layout.layout_name
+run command :
+
+	haxelib install Basis
+	
+
+**Running the Example**
+
+* Download the example in the example directory. https://github.com/Randonee/BasisApple/tree/master/example
+* From the example directory run the command: haxelib run Basis build.xml
+
+
+
 
 
 **License:**
