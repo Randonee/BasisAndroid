@@ -6,7 +6,14 @@ import sys.FileSystem;
 import sys.io.File;
 import sys.io.FileOutput;
 
-class RMacros {
+/**
+* These macros generates fields for the resource classes (R package)
+* The goal is to make accessing resources similar to native android
+* http://developer.android.com/guide/topics/resources/accessing-resources.html
+**/
+
+class RMacros
+{
     @:macro public static function buildID() : Array<Field>
     {        
         var pos = haxe.macro.Context.currentPos();
@@ -33,9 +40,9 @@ class RMacros {
 				}
 			}
 		}
-      
         return fields;
     }
+    
     
     @:macro public static function buildLayout() : Array<Field>
     {
