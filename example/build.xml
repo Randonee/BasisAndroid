@@ -1,7 +1,8 @@
-<target name="Example">
+<target name="main">
+	<appName value="Example" />
 	<source path="src" />
 	<builddir path="build" />
-	<target type="android">
+	<target name="android" type="android">
 		<appBuildNumber value="1" />
 		<appVersion value="1.0" />
 		<appPackage value="basis.example" />

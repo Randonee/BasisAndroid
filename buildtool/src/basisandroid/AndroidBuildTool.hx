@@ -18,11 +18,11 @@ class AndroidBuildTool extends basis.BuildTool
 		return new XmlAndroidSettings(path);
 	}
 	
-	override private function getSettings_complete(target:Target):Void
+	override private function compileTarget(target:Target):Void
 	{
 		var libPath:String = FileUtil.getHaxelib("BasisAndroid");
 	
-		var androidTarget:AndroidTarget = cast(target, AndroidTarget).getAndroidTarget();
+		var androidTarget:AndroidTarget = cast(target, AndroidTarget);
 		
 		var args:Array<String> = androidTarget.getCollection(Target.COMMAND_LINE_ARGUMENTS, true);
 		var resourceDirectoies:Array<String> = androidTarget.getCollection(AndroidTarget.RESOURCE_DIRECTORIES, true);
@@ -31,13 +31,38 @@ class AndroidBuildTool extends basis.BuildTool
 		var haxeLibs:Array<String> = androidTarget.getCollection(Target.HAXE_LIBS, true);
 		
 		var appPackage:String = androidTarget.getSetting(AndroidTarget.APP_PACKAGE);
+		var debug:Bool = (androidTarget.getSetting(Target.DEBUG) == "true");
 		
 		var mainClass:String = androidTarget.getSetting(Target.MAIN);
 		if(mainClass == "" || mainClass == null)
 			throw("No main class found. Add <main classpath=\"com.example.Main\"/> to target");
-			
+		
+		
 		var targetPath:String = androidTarget.getSetting(Target.BUILD_DIR) + "/android/";
 		FileUtil.createDirectory(targetPath);
+		
+		
+		//Write haxe build file
+		var buildFile:FileOutput = File.write(targetPath + "/build.hxml");
+		buildFile.writeString("-cp haxe/src\n");
+		buildFile.writeString("-java haxe/java\n");
+		buildFile.writeString("-D android\n");
+		buildFile.writeString("-D no-compilation\n");
+		buildFile.writeString("-lib BasisAndroid\n");
+		
+		for(arg in args)
+			buildFile.writeString("-D " + arg + "\n");
+			
+		for(haxelib in haxeLibs)
+			buildFile.writeString("-lib " + haxelib + "\n");
+		
+		buildFile.writeString("-main " + mainClass + "\n");
+		
+		if(debug)
+			buildFile.writeString("-debug\n");
+		buildFile.close();
+		//---------------------
+			
 		
 		var assetsPath:String = targetPath + "/assets/";
 		FileUtil.createDirectory(assetsPath);
@@ -55,7 +80,6 @@ class AndroidBuildTool extends basis.BuildTool
 		FileUtil.createDirectory(mainPackageDir);
 		File.copy(targetPath + "/BasisActivity.java", mainPackageDir + "/BasisActivity.java");
 		FileSystem.deleteFile(targetPath + "/BasisActivity.java");
-		
 		
 		var mainFound:Bool = false;
 		for(a in 0...sourcePaths.length)
@@ -111,12 +135,17 @@ class AndroidBuildTool extends basis.BuildTool
 		var fout:FileOutput = File.write(targetPath + "/haxe/package.txt");
 		fout.writeString(appPackage);
 		
-		
 		FileUtil.createDirectory(targetPath + "/res/");
-		for(dir in resourceDirectoies)
-			FileUtil.copyInto(dir, targetPath + "/res/");
 		
-		ProcessUtil.runCommand(targetPath, "haxe", ["debug.hxml"]);
+		for(dir in resourceDirectoies)
+		{
+			if(FileSystem.exists(dir))
+				FileUtil.copyInto(dir, targetPath + "/res/");
+			else
+				neko.Lib.println("Warning: resource path not found: " + dir);
+		}
+		
+		ProcessUtil.runCommand(targetPath, "haxe", ["build.hxml"]);
 		FileUtil.copyInto(haxePath + "/java/src/", targetPath + "/src/");
 		ProcessUtil.runCommand(targetPath, "ant", ["debug"]);
 		

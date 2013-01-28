@@ -1,7 +1,0 @@
--main ::main::
--cp haxe/src
--java haxe/java
--D android
--lib BasisAndroid
--D no-compilation
--debug

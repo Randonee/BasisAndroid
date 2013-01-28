@@ -30,6 +30,7 @@
 
 	<target name="testlib">
 		<antcall target="buildHaxelib" />
+		<delete dir="/usr/lib/haxe/lib/BasisAndroid"/>
 		<exec dir="." failonerror="true" executable="haxelib">
 			<arg line="test build/BasisAndroid.zip" />
 		</exec>
