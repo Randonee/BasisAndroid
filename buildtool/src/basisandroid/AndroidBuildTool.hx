@@ -24,7 +24,7 @@ class AndroidBuildTool extends basis.BuildTool
 	
 		var androidTarget:AndroidTarget = cast(target, AndroidTarget);
 		
-		var args:Array<String> = androidTarget.getCollection(Target.COMMAND_LINE_ARGUMENTS, true);
+		var haxeArgs:Array<String> = androidTarget.getCollection(Target.HAXE_ARGS, true);
 		var resourceDirectoies:Array<String> = androidTarget.getCollection(AndroidTarget.RESOURCE_DIRECTORIES, true);
 		var sourcePaths:Array<String> = androidTarget.getCollection(Target.SOURCE_PATHS, true);
 		var assetPaths:Array<String> = androidTarget.getCollection(Target.ASSET_PATHS, true);
@@ -50,8 +50,8 @@ class AndroidBuildTool extends basis.BuildTool
 		buildFile.writeString("-D no-compilation\n");
 		buildFile.writeString("-lib BasisAndroid\n");
 		
-		for(arg in args)
-			buildFile.writeString("-D " + arg + "\n");
+		for(arg in haxeArgs)
+			buildFile.writeString(arg + "\n");
 			
 		for(haxelib in haxeLibs)
 			buildFile.writeString("-lib " + haxelib + "\n");
