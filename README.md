@@ -17,8 +17,8 @@ run this command (make sure Basis has a capital "B")
 
 **Running the Example**
 
-* Download the 0.0.1 example: https://github.com/Randonee/BasisAndroid/tree/v0.0.1/example
-* From the example directory run the command: haxelib run Basis build.xml
+* Download the 0.0.2 example: https://github.com/Randonee/BasisAndroid/tree/v0.0.2/example
+* From the example directory run the command: haxelib run Basis build.xml android
 
 
 

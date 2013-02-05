@@ -39,6 +39,7 @@ class AndroidBuildTool extends basis.BuildTool
 		
 		
 		var targetPath:String = androidTarget.getSetting(Target.BUILD_DIR) + "/android/";
+		targetPath = FileUtil.cleanPath(targetPath);
 		FileUtil.createDirectory(targetPath);
 		
 		
