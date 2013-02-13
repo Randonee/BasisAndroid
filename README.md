@@ -12,7 +12,9 @@ This project uses the java target to create and compile android projects.
 
 run this command (make sure Basis has a capital "B")
 
-	haxelib install Basis
+1. Install BasisAndroid haxelib with instructions found here: https://github.com/Randonee/Basis
+2. Install android sdk
+3. Add needed java class paths
 	
 
 **Running the Example**
