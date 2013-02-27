@@ -9,7 +9,7 @@ import android.view.KeyEvent;
 import r.Id;
 import r.Layout;
 
-class MainView implements OnKeyListener, implements OnClickListener
+class MainView implements OnKeyListener implements OnClickListener
 {
 	private var _inputLabel:TextView;
 	private var _inputField:EditText;
