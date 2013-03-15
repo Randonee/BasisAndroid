@@ -4,6 +4,13 @@ class Main
 {
 	static public function main():Void
 	{
-		new AndroidBuildTool().build();
+		try
+		{
+			new AndroidBuildTool().build();
+		}
+		catch(error:String)
+		{
+			neko.Lib.println(error);
+		}
 	}
 }
