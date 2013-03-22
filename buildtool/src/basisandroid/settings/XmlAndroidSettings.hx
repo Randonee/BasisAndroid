@@ -12,21 +12,21 @@ class XmlAndroidSettings extends XmlSettings
 		return new AndroidTarget(parentTarget);
 	}
 	
-	override private function parseTarget(targetXML:Fast, currentTarget:Target):Void
+	override private function parseSettings(settingsXML:Fast, currentTarget:Target):Void
 	{
-		if(targetXML.hasNode.appBuildNumber)
-			parseAppBuildNumber(targetXML.node.appBuildNumber, currentTarget);
-		if(targetXML.hasNode.appVersion)
-			parseAppVersion(targetXML.node.appVersion, currentTarget);
-		if(targetXML.hasNode.appPackage)
-			parseAppPackage(targetXML.node.appPackage, currentTarget);
-		if(targetXML.hasNode.emulator)
-			parseEmulator(targetXML.node.emulator, currentTarget);
+		if(settingsXML.hasNode.appBuildNumber)
+			parseAppBuildNumber(settingsXML.node.appBuildNumber, currentTarget);
+		if(settingsXML.hasNode.appVersion)
+			parseAppVersion(settingsXML.node.appVersion, currentTarget);
+		if(settingsXML.hasNode.appPackage)
+			parseAppPackage(settingsXML.node.appPackage, currentTarget);
+		if(settingsXML.hasNode.emulator)
+			parseEmulator(settingsXML.node.emulator, currentTarget);
 			
-		for( dir in targetXML.nodes.resourceDir )
+		for( dir in settingsXML.nodes.resourceDir )
 			parseResourceDirectories(dir, currentTarget);
 			
-		super.parseTarget(targetXML, currentTarget);
+		super.parseSettings(settingsXML, currentTarget);
 	}
 	
 	private function parseAppBuildNumber(xml:Fast, currentTarget:Target):Void
