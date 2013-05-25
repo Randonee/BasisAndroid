@@ -1,29 +1,33 @@
 <project basedir=".">
+	
+	<property name="version" value="0.0.3-alpha"/>
+	<property name="versionDir" value="0,0,3-alpha"/>
+	
 	<target name="buildHaxelib">
 		<delete dir="build"/>
 		
 		<mkdir dir="build/"/>
 		<mkdir dir="build/BasisAndroid"/>
-		<mkdir dir="build/BasisAndroid/0,0,2"/>
-		<mkdir dir="build/BasisAndroid/0,0,2/bin"/>
-		<mkdir dir="build/BasisAndroid/0,0,2/template"/>
+		<mkdir dir="build/BasisAndroid/${versionDir}"/>
+		<mkdir dir="build/BasisAndroid/${versionDir}/bin"/>
+		<mkdir dir="build/BasisAndroid/${versionDir}/template"/>
 		
 		<exec dir="." failonerror="true" executable="haxe">
 			<arg line="build.hxml" />
 		</exec>
 		
-		<copy todir="build/BasisAndroid/0,0,2">
+		<copy todir="build/BasisAndroid/${versionDir}">
 			<fileset dir="src"/>
 		</copy>
 	
-		<copy todir="build/BasisAndroid/0,0,2/template">
+		<copy todir="build/BasisAndroid/${versionDir}/template">
 			<fileset dir="template"/>
 		</copy>
 	
-		<copy file="haxelib.xml" tofile="build/BasisAndroid/0,0,2/haxelib.xml"/>
-		<copy file="build/run.n" tofile="build/BasisAndroid/0,0,2/run.n"/>
+		<copy file="haxelib.json" tofile="build/BasisAndroid/${versionDir}/haxelib.json"/>
+		<copy file="build/run.n" tofile="build/BasisAndroid/${versionDir}/run.n"/>
 		
-		<echo file="build/BasisAndroid/.current" >0.0.2</echo>
+		<echo file="build/BasisAndroid/.current" >${version}</echo>
 		
 		<zip destfile="build/BasisAndroid.zip" basedir="build/BasisAndroid" />
 	</target>
@@ -34,7 +38,7 @@
 		</exec>
 		<antcall target="buildHaxelib" />
 		<exec dir="." failonerror="true" executable="haxelib">
-			<arg line="install build/BasisAndroid.zip" />
+			<arg line="local build/BasisAndroid.zip" />
 		</exec>
 	</target>
 	

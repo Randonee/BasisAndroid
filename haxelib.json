@@ -1,0 +1,11 @@
+{
+  "name": "basisAndroid",
+  "url" : "https://github.com/Randonee/BasisAndroid",
+  "license": "MIT",
+  "tags": ["android"],
+  "description": "Haxe Native Apple Development",
+  "version": "0.0.3-alpha",
+  "releasenote": "alpha",
+  "contributors": [],
+  "dependencies": {}
+}

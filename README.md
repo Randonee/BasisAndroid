@@ -10,8 +10,6 @@ This project uses the java target to create and compile android projects.
 
 **Installation**
 
-run this command (make sure Basis has a capital "B")
-
 1. Install BasisAndroid haxelib with instructions found here: https://github.com/Randonee/Basis
 2. Install android sdk
 3. Add needed java class paths
@@ -19,9 +17,7 @@ run this command (make sure Basis has a capital "B")
 
 **Running the Example**
 
-* Download the 0.0.2 example: https://github.com/Randonee/BasisAndroid/tree/v0.0.2/example
-* From the example directory run the command: haxelib run Basis build.basis android
-
+* From the example directory run the command: haxelib run basis build.basis android
 
 
 **License:**
