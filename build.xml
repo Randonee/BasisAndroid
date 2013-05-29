@@ -32,7 +32,7 @@
 		<zip destfile="build/BasisAndroid.zip" basedir="build/BasisAndroid" />
 	</target>
 
-	<target name="installib">
+	<target name="install">
 		<exec dir="." failonerror="false" executable="haxelib">
 			<arg line="remove BasisAndroid" />
 		</exec>
