@@ -19,7 +19,7 @@
 		<copy todir="build/BasisAndroid/${versionDir}">
 			<fileset dir="src"/>
 		</copy>
-	
+		
 		<copy todir="build/BasisAndroid/${versionDir}/template">
 			<fileset dir="template"/>
 		</copy>

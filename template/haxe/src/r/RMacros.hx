@@ -14,7 +14,7 @@ import sys.io.FileOutput;
 
 class RMacros
 {
-    @:macro public static function buildID() : Array<Field>
+    macro public static function buildID() : Array<Field>
     {        
         var pos = haxe.macro.Context.currentPos();
         var fields = haxe.macro.Context.getBuildFields();
@@ -44,7 +44,7 @@ class RMacros
     }
     
     
-    @:macro public static function buildLayout() : Array<Field>
+    macro public static function buildLayout() : Array<Field>
     {
     	var pos = haxe.macro.Context.currentPos();
         var fields = haxe.macro.Context.getBuildFields();
@@ -72,7 +72,7 @@ class RMacros
     }
     
     
-    @:macro public static function buildString() : Array<Field>
+    macro public static function buildString() : Array<Field>
     {
     	var pos = haxe.macro.Context.currentPos();
         var fields = haxe.macro.Context.getBuildFields();

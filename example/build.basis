@@ -5,6 +5,7 @@
 	<target name="android" type="android">
 		<appBuildNumber value="1" />
 		<appVersion value="1.0" />
+		<androidAPIVersion value="16" />
 		<appPackage value="basis.example" />
 		<main classpath="example.ApplicationMain" />
 		<resourceDir path="res" />

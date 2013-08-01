@@ -22,6 +22,8 @@ class XmlAndroidSettings extends XmlSettings
 			parseAppPackage(settingsXML.node.appPackage, currentTarget);
 		if(settingsXML.hasNode.emulator)
 			parseEmulator(settingsXML.node.emulator, currentTarget);
+		if(settingsXML.hasNode.androidAPIVersion)
+			parseAndroidAPIVersion(settingsXML.node.androidAPIVersion, currentTarget);
 			
 		for( dir in settingsXML.nodes.resourceDir )
 			parseResourceDirectories(dir, currentTarget);
@@ -32,6 +34,11 @@ class XmlAndroidSettings extends XmlSettings
 	private function parseAppBuildNumber(xml:Fast, currentTarget:Target):Void
 	{
 		currentTarget.setSetting(AndroidTarget.APP_BUILD_NUMBER, xml.att.value);
+	}
+	
+	private function parseAndroidAPIVersion(xml:Fast, currentTarget:Target):Void
+	{
+		currentTarget.setSetting(AndroidTarget.ANDROID_VERSION, xml.att.value);
 	}
 	
 	private function parseAppVersion(xml:Fast, currentTarget:Target):Void

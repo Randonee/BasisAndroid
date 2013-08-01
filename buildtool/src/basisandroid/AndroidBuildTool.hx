@@ -21,6 +21,11 @@ class AndroidBuildTool extends basis.BuildTool
 	override private function compileTarget(target:Target):Void
 	{
 		var libPath:String = FileUtil.getHaxelib("BasisAndroid");
+		
+		var androidSDK:String = Sys.getEnv("ANDROID_SDK");
+		
+		if(androidSDK == null || androidSDK == "")
+			throw("ANDROID_SDK environmental variable not set. Set ANDROID_SDK to root of android sdk directory.");
 	
 		var androidTarget:AndroidTarget = cast(target, AndroidTarget);
 		
@@ -29,6 +34,10 @@ class AndroidBuildTool extends basis.BuildTool
 		var sourcePaths:Array<String> = androidTarget.getCollection(Target.SOURCE_PATHS, true);
 		var assetPaths:Array<String> = androidTarget.getCollection(Target.ASSET_PATHS, true);
 		var haxeLibs:Array<String> = androidTarget.getCollection(Target.HAXE_LIBS, true);
+		
+		var androidAPIVersion:String = androidTarget.getSetting(AndroidTarget.ANDROID_VERSION);
+		if(androidAPIVersion == null || androidAPIVersion == "")
+			throw("androidAPIVersion not defined. Add <androidAPIVersion version=\"18\"/> to target");
 		
 		var appPackage:String = androidTarget.getSetting(AndroidTarget.APP_PACKAGE);
 		var debug:Bool = (androidTarget.getSetting(Target.DEBUG) == "true");
@@ -47,6 +56,7 @@ class AndroidBuildTool extends basis.BuildTool
 		var buildFile:FileOutput = File.write(targetPath + "/build.hxml");
 		buildFile.writeString("-cp haxe/src\n");
 		buildFile.writeString("-java haxe/java\n");
+		buildFile.writeString("-java-lib " + androidSDK + "/platforms/" + "android-" + androidAPIVersion + "/android.jar\n");
 		buildFile.writeString("-D android\n");
 		buildFile.writeString("-D no-compilation\n");
 		buildFile.writeString("-lib BasisAndroid\n");
