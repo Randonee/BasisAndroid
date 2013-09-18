@@ -7,38 +7,38 @@
 		<delete dir="build"/>
 		
 		<mkdir dir="build/"/>
-		<mkdir dir="build/BasisAndroid"/>
-		<mkdir dir="build/BasisAndroid/${versionDir}"/>
-		<mkdir dir="build/BasisAndroid/${versionDir}/bin"/>
-		<mkdir dir="build/BasisAndroid/${versionDir}/template"/>
+		<mkdir dir="build/basisAndroid"/>
+		<mkdir dir="build/basisAndroid/${versionDir}"/>
+		<mkdir dir="build/basisAndroid/${versionDir}/bin"/>
+		<mkdir dir="build/basisAndroid/${versionDir}/template"/>
 		
 		<exec dir="." failonerror="true" executable="haxe">
 			<arg line="build.hxml" />
 		</exec>
 		
-		<copy todir="build/BasisAndroid/${versionDir}">
+		<copy todir="build/basisAndroid/${versionDir}">
 			<fileset dir="src"/>
 		</copy>
 		
-		<copy todir="build/BasisAndroid/${versionDir}/template">
+		<copy todir="build/basisAndroid/${versionDir}/template">
 			<fileset dir="template"/>
 		</copy>
 	
-		<copy file="haxelib.json" tofile="build/BasisAndroid/${versionDir}/haxelib.json"/>
-		<copy file="build/run.n" tofile="build/BasisAndroid/${versionDir}/run.n"/>
+		<copy file="haxelib.json" tofile="build/basisAndroid/${versionDir}/haxelib.json"/>
+		<copy file="build/run.n" tofile="build/basisAndroid/${versionDir}/run.n"/>
 		
-		<echo file="build/BasisAndroid/.current" >${version}</echo>
+		<echo file="build/basisAndroid/.current" >${version}</echo>
 		
-		<zip destfile="build/BasisAndroid.zip" basedir="build/BasisAndroid" />
+		<zip destfile="build/basisAndroid.zip" basedir="build/basisAndroid" />
 	</target>
 
 	<target name="install">
 		<exec dir="." failonerror="false" executable="haxelib">
-			<arg line="remove BasisAndroid" />
+			<arg line="remove basisAndroid" />
 		</exec>
 		<antcall target="buildHaxelib" />
 		<exec dir="." failonerror="true" executable="haxelib">
-			<arg line="local build/BasisAndroid.zip" />
+			<arg line="local build/basisAndroid.zip" />
 		</exec>
 	</target>
 	
