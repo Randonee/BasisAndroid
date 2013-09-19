@@ -20,7 +20,7 @@ class AndroidBuildTool extends basis.BuildTool
 	
 	override private function compileTarget(target:Target):Void
 	{
-		var libPath:String = FileUtil.getHaxelib("BasisAndroid");
+		var libPath:String = FileUtil.getHaxelib("basisAndroid");
 		
 		var androidSDK:String = Sys.getEnv("ANDROID_SDK");
 		
@@ -59,7 +59,7 @@ class AndroidBuildTool extends basis.BuildTool
 		buildFile.writeString("-java-lib " + androidSDK + "/platforms/" + "android-" + androidAPIVersion + "/android.jar\n");
 		buildFile.writeString("-D android\n");
 		buildFile.writeString("-D no-compilation\n");
-		buildFile.writeString("-lib BasisAndroid\n");
+		buildFile.writeString("-lib basisAndroid\n");
 		
 		for(arg in haxeArgs)
 			buildFile.writeString(arg + "\n");
