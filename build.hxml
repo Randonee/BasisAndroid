@@ -1,4 +1,4 @@
 -cp buildtool/src
--lib Basis
+-lib basis
 -neko build/run.n
 -main basisandroid.Main
