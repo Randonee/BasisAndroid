@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import basis.MainActivity;
+import haxe.root.::main::;
 
 public class BasisActivity extends MainActivity
 {	
